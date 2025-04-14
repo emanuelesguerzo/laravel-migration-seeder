@@ -16,7 +16,7 @@
                 
                 {{-- Table Head --}}
                 <thead>
-                    <tr>
+                    <tr class="table-dark fs-5">
                         <th>Vettore</th>
                         <th>Codice Treno</th>
                         <th>Stazione di Partenza</th>
@@ -33,7 +33,7 @@
                 <tbody>
                     @foreach ($trains as $train)
                         <tr class="{{ $train->cancelled ? 'table-danger' : '' }}">
-                            <td>{{ $train->company }}</td>
+                            <td class="text-wrap">{{ $train->company }}</td>
                             <td>{{ $train->train_code }}</td>
                             <td>{{ $train->departure_station }}</td>
                             <td>{{ Carbon::parse($train->departure_time)->format('d/m/Y H:i') }}</td>
@@ -45,7 +45,14 @@
                         </tr>
                     @endforeach
                 </tbody>
+                
             </table>
+
+            {{-- Paginator --}}
+            <div class="mt-4">
+                {{ $trains->links() }}
+            </div>
+
         </div>
     </div>
 @endsection

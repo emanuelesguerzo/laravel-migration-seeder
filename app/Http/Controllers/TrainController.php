@@ -13,7 +13,7 @@ class TrainController extends Controller
         // Per demo dati attuali
         $todayAtTen = Carbon::today()->setHour(6)->setMinute(0)->setSecond(0);
 
-        $trains = Train::where('departure_time', '>=', $todayAtTen)->orderBy('departure_time', 'asc')->get();
+        $trains = Train::where('departure_time', '>=', $todayAtTen)->orderBy('departure_time', 'asc')->paginate(10);
         return view("home", compact("trains"));
         
     }
